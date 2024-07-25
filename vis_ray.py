@@ -9,14 +9,15 @@ if argc != 6:
     print('usage: python vis_ray.py MODEL_FILE RAY_FILE RESULT_FILE MAX_T NUM_RAYS')
     exit(1)
 
-p = pv.Plotter()
-ply_mesh = pv.read(argv[1])
-p.add_mesh(ply_mesh, opacity=0.1)
-
+model_file = argv[1]
 ray_file = argv[2]
 result_file = argv[3]
 max_t = float(argv[4])
 num_rays = int(argv[5])
+
+p = pv.Plotter()
+ply_mesh = pv.read(model_file)
+p.add_mesh(ply_mesh, opacity=0.1)
 
 rs = np.fromfile(ray_file, dtype=np.float32).reshape(-1, 7)
 result = np.fromfile(result_file, dtype=np.float32).reshape(-1, 2)
