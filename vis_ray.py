@@ -5,8 +5,8 @@ import sys
 argc = len(sys.argv)
 argv = sys.argv
 
-if argc != 6:
-    print('usage: python vis_ray.py MODEL_FILE RAY_FILE RESULT_FILE MAX_T NUM_RAYS')
+if argc != 7:
+    print('usage: python vis_ray.py MODEL_FILE RAY_FILE RESULT_FILE MAX_T NUM_RAYS RANDOMIZE')
     exit(1)
 
 model_file = argv[1]
@@ -14,6 +14,7 @@ ray_file = argv[2]
 result_file = argv[3]
 max_t = float(argv[4])
 num_rays = int(argv[5])
+randomize = int(argv[6])
 
 p = pv.Plotter()
 ply_mesh = pv.read(model_file)
@@ -23,7 +24,13 @@ rs = np.fromfile(ray_file, dtype=np.float32).reshape(-1, 7)
 result = np.fromfile(result_file, dtype=np.float32).reshape(-1, 2)
 assert rs.shape[0] == result.shape[0]
 
-indices = np.arange(num_rays)
+if randomize:
+    indices = np.arange(rs.shape[0])
+    np.random.shuffle(indices)
+    indices = indices[:num_rays]
+else:
+    indices = np.arange(num_rays)
+
 rs = rs[indices]
 result = result[indices]
 
