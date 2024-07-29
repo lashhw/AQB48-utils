@@ -48,7 +48,7 @@ int main(int argc, char* argv[]) {
     size_t num_correct = 0;
     for (size_t i = 0; i < ref_result_.size(); i++) {
         if (ref_result_[i].intersected) {
-            if (result_[i].intersected && std::fabs(result_[i].t - ref_result_[i].t) < eps)
+            if (result_[i].intersected && std::fabs(result_[i].t / ref_result_[i].t - 1.0f) < eps)
                 num_correct++;
         } else {
             if (!result_[i].intersected)
