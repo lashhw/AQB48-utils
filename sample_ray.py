@@ -2,7 +2,7 @@ import numpy as np
 import sys
 
 if len(sys.argv) != 4:
-    print('usage: python sample.py NUM_SAMPLES INPUT_FILE OUTPUT_FILE')
+    print('usage: python sample_ray.py NUM_SAMPLES INPUT_FILE OUTPUT_FILE')
     exit(1)
 
 num_samples, input_file, output_file = sys.argv[1:]
