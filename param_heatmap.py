@@ -10,7 +10,6 @@ def gen_heatmap(arr, image_name):
     plt.savefig(image_name)
     plt.clf()
 
-
 argc = len(sys.argv)
 argv = sys.argv
 
