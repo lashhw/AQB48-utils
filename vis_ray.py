@@ -47,4 +47,5 @@ for i in range(num_rays):
     ray = pv.Line(ls, le)
     p.add_mesh(ray, color=color)
 
+p.add_axes_at_origin(labels_off=True)
 p.show()
